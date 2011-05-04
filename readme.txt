@@ -49,6 +49,9 @@ Our full version includes many more features:
 1. In post chat
 2. Chat widget
 
+== Upgrade Notice ==
+Up the version to work with update plugin.
+
 == ChangeLog ==
 
 = 1.0.3 =
