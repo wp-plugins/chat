@@ -3,7 +3,7 @@ Contributors: WPMUDEV
 Author: WPMUDEV
 Tags: chat, twitter, facebook, short code
 Requires at least: 3.0.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Tested up to: 3.1.2
 
 Easily add a chat to your blog. Allows your readers to chat with you or each other.
