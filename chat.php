@@ -9,6 +9,7 @@ page by clicking on the new chat icon in your post/page editor.
  Author: S H Mohanjith (Incsub)
  WDP ID: 159
  Version: 1.0.3
+ Stable tag: 1.0.3
  Author URI: http://premium.wpmudev.org
 */
 /**
