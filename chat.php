@@ -7,9 +7,9 @@ post, page or bottom corner of your site - once activated configure <a
 href="options-general.php?page=chat">here</a> and drop into a post or
 page by clicking on the new chat icon in your post/page editor.
  Author: S H Mohanjith (Incsub)
- WDP ID: 159
- Version: 1.0.3
- Stable tag: 1.0.3
+ WDP ID: 223
+ Version: 1.0.4
+ Stable tag: 1.0.4
  Author URI: http://premium.wpmudev.org
 */
 /**
