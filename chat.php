@@ -8,7 +8,7 @@ href="options-general.php?page=chat">here</a> and drop into a post or
 page by clicking on the new chat icon in your post/page editor.
  Author: S H Mohanjith (Incsub)
  WDP ID: 159
- Version: 1.0.2
+ Version: 1.0.3
  Author URI: http://premium.wpmudev.org
 */
 /**
@@ -31,7 +31,7 @@ if (!class_exists('Chat')) {
 		 * 
 		 * @var		string	$chat_current_version	Current version
 		 */
-		var $chat_current_version = '1.0.2';
+		var $chat_current_version = '1.0.3';
 		
 		/**
 		 * @var		string	$translation_domain	Translation domain
