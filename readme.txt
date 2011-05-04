@@ -1,6 +1,6 @@
 === Chat ===
 Contributors: WPMUDEV
-Author: WPMUDEV
+Author: WPMUDEV, mohanjith
 Tags: chat, twitter, facebook, short code
 Requires at least: 3.0.0
 Stable tag: 1.0.2
