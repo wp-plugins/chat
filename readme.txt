@@ -1,5 +1,5 @@
 === Chat ===
-Contributors: WPMUDEV
+Contributors: WPMUDEV, mohanjith
 Author: WPMUDEV, mohanjith
 Tags: chat, twitter, facebook, short code
 Requires at least: 3.0.0
