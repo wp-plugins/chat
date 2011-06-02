@@ -32,7 +32,7 @@ if (!class_exists('Chat')) {
 		 * 
 		 * @var		string	$chat_current_version	Current version
 		 */
-		var $chat_current_version = '1.0.3';
+		var $chat_current_version = '1.0.4';
 		
 		/**
 		 * @var		string	$translation_domain	Translation domain
