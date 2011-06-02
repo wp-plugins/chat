@@ -6,24 +6,24 @@ Requires at least: 3.0.0
 Tested up to: 3.1.2
 Stable tag: trunk
 
-Easily add a chat to your blog. Allows your readers to chat with you or each other.
+Add chat to your blog. Chat with your readers and let them chat with each other.
 
 == Description ==
 
 Start communicating!  Bring live, two-way chat to your site.
 Host your own live chat sessions, interact with your visitors and boost your
 sales without needing any third party javascript or other code - works great
-with BuddyPress and multisite too.
+with BuddyPress and Multisite too.
 
 = You can use Chat lite to... =
-* Add a site-wide chat in the bottom corner
+* Add a site-wide chat window in the bottom corner of your site
 * Add chat to any blog post or page
 * Answer support questions
 * Promote web services or products
 * Increase the ability for members of your social network to connect
 
 = Get Started Quickly =
-Separate chat windows are added easily to any post or page in WordPress through a new button added to the built-in editor.  
+Separate chat windows are added  to any post or page in WordPress through a new button added to the built-in editor.  
 
 = Integrate With Your Theme =
 The Chat Lite Plugin gives you full control over the colors and sizes of your chats.  Get exactly the look and feel you want!
