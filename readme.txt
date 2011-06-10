@@ -54,6 +54,9 @@ Up the version to work with update plugin.
 
 == ChangeLog ==
 
+= 1.0.5 =
+* Removing update notification
+
 = 1.0.4 =
 * New WPIDs
 
