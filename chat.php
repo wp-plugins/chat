@@ -8,7 +8,7 @@ href="options-general.php?page=chat">here</a> and drop into a post or
 page by clicking on the new chat icon in your post/page editor.
  Author: S H Mohanjith (Incsub)
  WDP ID: 223
- Version: 1.0.5
+ Version: 1.0.6
  Stable tag: trunk
  Author URI: http://premium.wpmudev.org
 */
@@ -1939,9 +1939,11 @@ if (!class_exists('Chat')) {
 							$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
 							
 							if(($message) != "\n" && ($message) != "<br />" && ($message) != "") {
-									if(preg_match($reg_exUrl, $message, $url)) {
-										$message = preg_replace($reg_exUrl, '<a href="'.$url[0].'" target="_blank">'.$url[0].'</a>', $message);
+								if(preg_match_all($reg_exUrl, $message, $urls) && isset($urls[0]) && count($urls[0]) > 0) {
+									foreach ($urls[0] as $url) {
+										$message = str_replace($url, '<a href="'.$url.'" target="_blank">'.$url.'</a>', $message);
 									}
+								}
 							}
 							
 							$message = preg_replace(array('/\[code\]/','/\[\/code\]/'), array('<code style="background: '.$this->get_option('code_color', '#FFFFCC').'; padding: 4px 8px;">', '</code>'), $message);

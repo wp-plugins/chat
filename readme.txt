@@ -54,6 +54,9 @@ Up the version to work with update plugin.
 
 == ChangeLog ==
 
+= 1.0.6 =
+* Allow multiple links to be in the chat message
+
 = 1.0.5 =
 * Removing update notification
 
