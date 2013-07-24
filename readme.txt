@@ -3,7 +3,7 @@ Contributors: WPMUDEV, mohanjith
 Author: WPMUDEV, mohanjith
 Tags: chat, twitter, facebook, short code
 Requires at least: 3.0.0
-Tested up to: 3.1.3
+Tested up to: 3.5.2
 Stable tag: trunk
 
 Add chat to your blog. Chat with your readers and let them chat with each other.
@@ -53,12 +53,6 @@ Our full version includes many more features:
 Up the version to work with update plugin.
 
 == ChangeLog ==
-
-= 1.0.8 =
-* Corrected user capability definition on admin menu
-* Updated calls from get_usermeta to get_user_meta
-* Updated smileys list
-* Tested up to WP 3.5.2
 
 = 1.0.7 =
 * Adding update code
