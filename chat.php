@@ -8,7 +8,7 @@ href="options-general.php?page=chat">here</a> and drop into a post or
 page by clicking on the new chat icon in your post/page editor.
  Author: S H Mohanjith (Incsub)
  WDP ID: 223
- Version: 1.0.6
+ Version: 1.0.8
  Stable tag: trunk
  Author URI: http://premium.wpmudev.org
 */
@@ -32,7 +32,7 @@ if (!class_exists('Chat')) {
 		 * 
 		 * @var		string	$chat_current_version	Current version
 		 */
-		var $chat_current_version = '1.0.4';
+		var $chat_current_version = '1.0.8';
 		
 		/**
 		 * @var		string	$translation_domain	Translation domain
@@ -388,7 +388,7 @@ if (!class_exists('Chat')) {
 		 * @see		http://codex.wordpress.org/Adding_Administration_Menus
 		 */
 		function admin_menu() {
-			add_options_page(__('Chat Plugin Options', $this->translation_domain), __('Chat', $this->translation_domain), 8, 'chat', array(&$this, 'plugin_options'));
+			add_options_page(__('Chat Plugin Options', $this->translation_domain), __('Chat', $this->translation_domain), 'manage_options', 'chat', array(&$this, 'plugin_options'));
 		}
 		
 		/**
@@ -1427,7 +1427,7 @@ if (!class_exists('Chat')) {
 				$vip = 'no';
 			}
 					
-			$chat_sounds = get_usermeta($current_user->ID, 'chat_sounds', 'enabled');
+			$chat_sounds = get_user_meta($current_user->ID, 'chat_sounds', 'enabled');
 			if (empty($chat_sounds)) {
 				$chat_sounds = $this->get_option('sounds', "enabled");
 			}
@@ -1554,7 +1554,7 @@ if (!class_exists('Chat')) {
 				$uid = $current_user->ID;
 			}
 			
-			$chat_sounds = get_usermeta( $uid, 'chat_sounds' );
+			$chat_sounds = get_user_meta( $uid, 'chat_sounds' );
 			?>
 		    <h3><?php _e('Chat Settings', $this->translation_domain); ?></h3>
 		    
@@ -1762,7 +1762,32 @@ if (!class_exists('Chat')) {
 				$url_separator = "?";
 			}
 			
+			/*
 			$smilies_list = array(':)', ':D', ':(', ':o', '8O', ':?', '8)', ':x', ':P', ':|', ';)', ':lol:', ':oops:', ':cry:', ':evil:', ':twisted:', ':roll:', ':!:', ':?:', ':idea:', ':arrow:', ':mrgreen:');
+			*/
+			$smilies_list = array(
+					':smile:', 
+					':grin:', 
+					':sad:', 
+					':eek:', 
+					':shock:', 
+					':???:', 
+					':cool:', 
+					':mad:', 
+					':razz:', 
+					':neutral:', 
+					':wink:', 
+					':lol:', 
+					':oops:', 
+					':cry:', 
+					':evil:', 
+					':twisted:', 
+					':roll:', 
+					':!:', 
+					':?:', 
+					':idea:', 
+					':arrow:');
+			
 			
 			if ($post) {
 				$content = '<div id="chat-box-'.$a['id'].'" class="chat-box" style="width: '.$a['width'].' !important; background-color: '.$a['background_color'].'; '.$font_style.'" >';

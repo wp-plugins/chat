@@ -54,6 +54,15 @@ Up the version to work with update plugin.
 
 == ChangeLog ==
 
+= 1.0.8 =
+* Corrected user capability definition on admin menu
+* Updated calls from get_usermeta to get_user_meta
+* Updated smileys list
+* Tested up to WP 3.5.2
+
+= 1.0.7 =
+* Adding update code
+
 = 1.0.6 =
 * Allow multiple links to be in the chat message
 
