@@ -2,18 +2,22 @@
 Contributors: WPMUDEV, mohanjith
 Author: WPMUDEV, mohanjith
 Tags: chat, twitter, facebook, short code
-Requires at least: 3.0.0
-Tested up to: 3.6.1
+Requires at least: 3.5.0
+Tested up to: 3.8.1
 Stable tag: 1.0.8.1
 
 Add chat to your blog. Chat with your readers and let them chat with each other.
 
 == Description ==
 
+
+
 Start communicating!  Bring live, two-way chat to your site.
 Host your own live chat sessions, interact with your visitors and boost your
 sales without needing any third party javascript or other code - works great
 with BuddyPress and Multisite too.
+
+[youtube http://www.youtube.com/watch?v=MKbkCs8rcqw]
 
 = You can use Chat lite to... =
 * Add a site-wide chat window in the bottom corner of your site
