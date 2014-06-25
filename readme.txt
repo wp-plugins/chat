@@ -1,7 +1,7 @@
 === Chat ===
 Contributors: WPMUDEV, mohanjith
 Author: WPMUDEV, mohanjith
-Tags: Block IP, Block User, Bottom Corner Chat, BuddyPress, BuddyPress Chat, Censor Chat, Chat Online, Chat Tool, Chat Widget, Customer Support, Customer Support Chat, Facebook, Facebook API, Free Live Chat, Free Live Support, Friends, Google, Google API, Google+, Group, Group Chat, Live Chat, Live Chat Support, Live Help, Live Help Plugin, Live Support Chat, Livehelp, Logs, Member Only Chat, Moderator, One on One, Online Live Chat, Online Support, Online Users, Plugin Chat, Polling, Private Chat, Private Message, Public Chat, Roles, Sidebar, Sidebar Chat, Toolbar, Toolbar Chat, Twitter API, User List, Visitor Chat, Web Chat, Widget, WordPress Admin Bar Chat,chat,Live Support Chats
+Tags: Block IP, Block User, BuddyPress, BuddyPress Chat, Chat Online, Chat Tool, Chat Widget, Customer Support, Facebook, Free Live Chat, Free Live Support, Friends, Google, Google+, Group, Group Chat, Live Chat, Live Chat Support, Live Help, Live Help Plugin, Livehelp, Logs, Member Only Chat, Moderator, One on One, Online Live Chat, Online Support, Online Users, Plugin Chat, Polling, Private Chat, Private Message, Public Chat, Roles, Sidebar, Sidebar Chat, Toolbar, Toolbar Chat, Twitter API, User List, Visitor Chat, Web Chat, Widget,chat,Live Support Chats
 Requires at least: 3.5.0
 Tested up to: 3.9.1
 Stable tag: 1.0.8.1
