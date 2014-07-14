@@ -46,6 +46,7 @@ Our full version includes many more features:
 * **Enable emoticons**
 * **Change chat update interval**
 * **Archive every chat** - You'll always have a record with timestamps on hand to refer back to when needed.
+* **Chat polling - Change the frequency to check for new messages, handy for shared hosting environments.
 
 <a href='http://premium.wpmudev.org/project/wordpress-chat-plugin'>**Upgrade to the full version now &raquo;**</a>
 
