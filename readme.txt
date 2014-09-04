@@ -1,9 +1,9 @@
 === Chat ===
 Contributors: WPMUDEV, mohanjith, umeshsingla
 Author: WPMUDEV
-Tags: BuddyPress, Chat Tool, Chat Widget, Customer Support, Free Live Chat, Friends, Group Chat, Live Chat, Online Live Chat, Online Support, Plugin Chat, Private Message, Web Chat,chat
+Tags: Chat Tool, Chat Widget, Customer Support, Free Live Chat, Group Chat, Live Chat, Online Live Chat, Online Support, Plugin Chat, Private Message, Web Chat, BuddyPress chat
 Requires at least: 3.5.0
-Tested up to: 3.9.2
+Tested up to: 4.0
 Stable tag: 1.0.8.2
 
 Add chat to your blog. Chat with your readers and let them chat with each other.
