@@ -5,7 +5,7 @@ Plugin URI: http://premium.wpmudev.org/project/wordpress-chat-plugin
 Description: Provides you with a fully featured chat area either in a post, page or bottom corner of your site - once activated configure <a href="options-general.php?page=chat">here</a> and drop into a post or page by clicking on the new chat icon in your post/page editor.
 Author: WPMUDev
 WDP ID: 223
-Version: 1.0.8.2
+Version: 1.0.8.3
 Stable tag: trunk
 Author URI: http://premium.wpmudev.org
 */
@@ -361,20 +361,20 @@ if ( ! class_exists( 'Chat' ) ) {
 			wp_register_script( 'jquery-cookie', plugins_url( 'chat/js/jquery-cookie.js' ), array( 'jquery' ) );
 			// wp_register_script('jquery-blockUI', plugins_url('chat/js/jquery.blockUI.js'), array('jquery'));
 			wp_register_script( 'chat_js', plugins_url( 'chat/js/chat.js' ), array(
-					'jquery',
-					'jquery-cookie',
-					'chat_soundmanager'
-				), $this->chat_current_version, true );
+				'jquery',
+				'jquery-cookie',
+				'chat_soundmanager'
+			), $this->chat_current_version, true );
 
 			if ( is_admin() ) {
 				wp_register_script( 'farbtastic', plugins_url( 'chat/js/farbtastic.js' ), array( 'jquery' ) );
 				wp_register_script( 'chat_admin_js', plugins_url( 'chat/js/chat-admin.js' ), array(
-						'jquery',
-						'jquery-cookie',
-						'jquery-ui-core',
-						'jquery-ui-tabs',
-						'farbtastic'
-					), $this->chat_current_version, true );
+					'jquery',
+					'jquery-cookie',
+					'jquery-ui-core',
+					'jquery-ui-tabs',
+					'farbtastic'
+				), $this->chat_current_version, true );
 				wp_register_style( 'chat_admin_css', plugins_url( 'chat/css/wp_admin.css' ) );
 			}
 
@@ -411,9 +411,9 @@ if ( ! class_exists( 'Chat' ) ) {
 		 */
 		function admin_menu() {
 			add_options_page( __( 'Chat Plugin Options', $this->translation_domain ), __( 'Chat', $this->translation_domain ), 'manage_options', 'chat', array(
-					&$this,
-					'plugin_options'
-				) );
+				&$this,
+				'plugin_options'
+			) );
 		}
 
 		/**
@@ -647,14 +647,16 @@ if ( ! class_exists( 'Chat' ) ) {
 							<td class="info"><?php _e( "Display the user's avatar with the message?", $this->translation_domain ); ?></td>
 						</tr>
 
-						<tr class="chat_lite_disabled">
+						<tr>
 							<td><label for="chat_emoticons">{#chat_dlg.emoticons}</label></td>
-							<td>
-								<select id="chat_emoticons" name="chat_emoticons" disabled="disabled">
-									<option value="enabled" <?php print ( $this->get_option( 'emoticons', 'disabled' ) == 'enabled' ) ? 'selected="selected"' : ''; ?>>
+							<td><?php
+								$emoticons = $this->get_option( 'emoticons', 'disabled' );
+								?>
+								<select id="chat_emoticons" name="chat_emoticons">
+									<option value="enabled" <?php print ( $emoticons == 'enabled' ) ? 'selected="selected"' : ''; ?>>
 										{#chat_dlg.enabled}
 									</option>
-									<option value="disabled" <?php print ( $this->get_option( 'emoticons', 'disabled' ) == 'disabled' ) ? 'selected="selected"' : ''; ?>>
+									<option value="disabled" <?php print ( $emoticons == 'disabled' ) ? 'selected="selected"' : ''; ?>>
 										{#chat_dlg.disabled}
 									</option>
 								</select>
@@ -867,10 +869,10 @@ if ( ! class_exists( 'Chat' ) ) {
 									$name = translate_user_role( $details['name'] );
 									?>
 									<label><input type="checkbox" id="chat_moderator_roles_<?php print $role; ?>" name="chat_moderator_roles" class="chat_moderator_roles" value="<?php print $role; ?>" <?php print ( in_array( $role, $this->get_option( 'moderator_roles', array(
-														'administrator',
-														'editor',
-														'author'
-													) ) ) > 0 ) ? 'checked="checked"' : ''; ?> /> <?php _e( $name, $this->translation_domain ); ?>
+												'administrator',
+												'editor',
+												'author'
+											) ) ) > 0 ) ? 'checked="checked"' : ''; ?> /> <?php _e( $name, $this->translation_domain ); ?>
 									</label><br/>
 								<?php
 								}
@@ -982,13 +984,15 @@ if ( ! class_exists( 'Chat' ) ) {
 						<td class="info"><?php _e( "Display the user's avatar with the message?", $this->translation_domain ); ?></td>
 					</tr>
 
-					<tr class="chat_lite_disabled">
+					<tr>
 						<td><label for="chat_emoticons"><?php _e( 'Emoticons', $this->translation_domain ); ?></label>
 						</td>
-						<td>
-							<select id="chat_emoticons" name="chat_default[emoticons]" disabled="disabled">
-								<option value="enabled" <?php print ( $this->get_option( 'emoticons', 'disabled' ) == 'enabled' ) ? 'selected="selected"' : ''; ?>><?php _e( 'Enabled', $this->translation_domain ); ?></option>
-								<option value="disabled" <?php print ( $this->get_option( 'emoticons', 'disabled' ) == 'disabled' ) ? 'selected="selected"' : ''; ?>><?php _e( 'Disabled', $this->translation_domain ); ?></option>
+						<td><?php
+							$emoticons = $this->get_option( 'emoticons', 'disabled' );
+							?>
+							<select id="chat_emoticons" name="chat_default[emoticons]">
+								<option value="enabled" <?php echo ( $emoticons == 'enabled' ) ? 'selected="selected"' : ''; ?>><?php _e( 'Enabled', $this->translation_domain ); ?></option>
+								<option value="disabled" <?php echo ( $this->get_option( 'emoticons', 'disabled' ) == 'disabled' ) ? 'selected="selected"' : ''; ?>><?php _e( 'Disabled', $this->translation_domain ); ?></option>
 							</select>
 						</td>
 						<td class="info"><?php _e( "Display emoticons bar?", $this->translation_domain ); ?></td>
@@ -1186,10 +1190,10 @@ if ( ! class_exists( 'Chat' ) ) {
 								$name = translate_user_role( $details['name'] );
 								?>
 								<label><input type="checkbox" id="chat_moderator_roles_<?php print $role; ?>" name="chat_default[moderator_roles][]" class="chat_moderator_roles" value="<?php print $role; ?>" <?php print ( in_array( $role, $this->get_option( 'moderator_roles', array(
-													'administrator',
-													'editor',
-													'author'
-												) ) ) > 0 ) ? 'checked="checked"' : ''; ?> disabled="disabled"/> <?php _e( $name, $this->translation_domain ); ?>
+											'administrator',
+											'editor',
+											'author'
+										) ) ) > 0 ) ? 'checked="checked"' : ''; ?> disabled="disabled"/> <?php _e( $name, $this->translation_domain ); ?>
 								</label><br/>
 							<?php
 							}
@@ -1252,13 +1256,15 @@ if ( ! class_exists( 'Chat' ) ) {
 						<td class="info"><?php _e( "Display the user's avatar with the message?", $this->translation_domain ); ?></td>
 					</tr>
 
-					<tr class="chat_lite_disabled">
+					<tr>
 						<td><label for="chat_emoticons_1"><?php _e( 'Emoticons', $this->translation_domain ); ?></label>
 						</td>
-						<td>
-							<select id="chat_emoticons_1" name="chat_site[emoticons]" disabled="disabled">
-								<option value="enabled" <?php print ( $this->get_option( 'emoticons', 'enabled', 'site' ) == 'enabled' ) ? 'selected="selected"' : ''; ?>><?php _e( 'Enabled', $this->translation_domain ); ?></option>
-								<option value="disabled" <?php print ( $this->get_option( 'emoticons', 'enabled', 'site' ) == 'disabled' ) ? 'selected="selected"' : ''; ?>><?php _e( 'Disabled', $this->translation_domain ); ?></option>
+						<td><?php
+								$emoticons = $this->get_option( 'emoticons', 'enabled', 'site' );
+							?>
+							<select id="chat_emoticons_1" name="chat_site[emoticons]">
+								<option value="enabled" <?php echo ( $emoticons == 'enabled' ) ? 'selected="selected"' : ''; ?>><?php _e( 'Enabled', $this->translation_domain ); ?></option>
+								<option value="disabled" <?php echo ( $emoticons == 'disabled' ) ? 'selected="selected"' : ''; ?>><?php _e( 'Disabled', $this->translation_domain ); ?></option>
 							</select>
 						</td>
 						<td class="info"><?php _e( "Display emoticons bar?", $this->translation_domain ); ?></td>
@@ -1468,10 +1474,10 @@ if ( ! class_exists( 'Chat' ) ) {
 								$name = translate_user_role( $details['name'] );
 								?>
 								<label><input type="checkbox" id="chat_moderator_roles_1_<?php print $role; ?>" name="chat_site[moderator_roles][]" class="chat_moderator_roles" value="<?php print $role; ?>" <?php print ( in_array( $role, $this->get_option( 'moderator_roles', array(
-													'administrator',
-													'editor',
-													'author'
-												), 'site' ) ) > 0 ) ? 'checked="checked"' : ''; ?> disabled="disabled"/> <?php _e( $name, $this->translation_domain ); ?>
+											'administrator',
+											'editor',
+											'author'
+										), 'site' ) ) > 0 ) ? 'checked="checked"' : ''; ?> disabled="disabled"/> <?php _e( $name, $this->translation_domain ); ?>
 								</label><br/>
 							<?php
 							}
@@ -1674,10 +1680,10 @@ if ( ! class_exists( 'Chat' ) ) {
 					'log_display'          => $this->get_option( 'log_display', 'disabled', 'site' ),
 					'login_options'        => join( ',', $this->get_option( 'login_options', array( 'current_user' ), 'site' ) ),
 					'moderator_roles'      => join( ',', $this->get_option( 'moderator_roles', array(
-								'administrator',
-								'editor',
-								'author'
-							) ) ),
+						'administrator',
+						'editor',
+						'author'
+					) ) ),
 				);
 				$this->process_shortcode( $atts );
 			}
@@ -1878,10 +1884,10 @@ if ( ! class_exists( 'Chat' ) ) {
 				'log_display'          => $this->get_option( 'log_display', 'disabled', 'site' ),
 				'login_options'        => join( ',', $this->get_option( 'login_options', array( 'current_user' ), 'site' ) ),
 				'moderator_roles'      => join( ',', $this->get_option( 'moderator_roles', array(
-							'administrator',
-							'editor',
-							'author'
-						) ) ),
+					'administrator',
+					'editor',
+					'author'
+				) ) ),
 			);
 
 			if ( $this->get_option( 'site', 'enabled', 'site' ) == 'enabled' ) {
@@ -1916,7 +1922,7 @@ if ( ! class_exists( 'Chat' ) ) {
 				'id'                   => 1,
 				'sound'                => $this->get_option( 'sound', 'enabled' ),
 				'avatar'               => $this->get_option( 'avatar', 'enabled' ),
-				'emoticons'            => $this->get_option( 'emoticons', 'enabled' ),
+				'emoticons'            => $this->get_option( 'emoticons', 'disabled' ),
 				'date_show'            => $this->get_option( 'date_show', 'disabled' ),
 				'time_show'            => $this->get_option( 'time_show', 'disabled' ),
 				'width'                => $this->get_option( 'width', '700px' ),
@@ -1932,10 +1938,10 @@ if ( ! class_exists( 'Chat' ) ) {
 				'log_display'          => $this->get_option( 'log_display', 'disabled' ),
 				'login_options'        => join( ',', $this->get_option( 'login_options', array( 'current_user' ) ) ),
 				'moderator_roles'      => join( ',', $this->get_option( 'moderator_roles', array(
-							'administrator',
-							'editor',
-							'author'
-						) ) ),
+					'administrator',
+					'editor',
+					'author'
+				) ) ),
 			), $atts );
 
 			foreach ( $a as $k => $v ) {
@@ -2070,7 +2076,8 @@ if ( ! class_exists( 'Chat' ) ) {
 			}
 
 			if ( $a['log_display'] == 'enabled' && $a['id'] != 1 ) {
-				$dates = $this->get_archives( $a['id'] );
+				$dates        = $this->get_archives( $a['id'] );
+				$date_content = '';
 
 				if ( $dates && is_array( $dates ) ) {
 					$content .= '<br />';
@@ -2183,12 +2190,12 @@ if ( ! class_exists( 'Chat' ) ) {
 							}
 
 							$message = preg_replace( array(
-									'/\[code\]/',
-									'/\[\/code\]/'
-								), array(
-									'<code style="background: ' . $this->get_option( 'code_color', '#FFFFCC' ) . '; padding: 4px 8px;">',
-									'</code>'
-								), $message );
+								'/\[code\]/',
+								'/\[\/code\]/'
+							), array(
+								'<code style="background: ' . $this->get_option( 'code_color', '#FFFFCC' ) . '; padding: 4px 8px;">',
+								'</code>'
+							), $message );
 
 							$message = str_replace( "\n", "<br />", $message );
 
@@ -2307,7 +2314,6 @@ if ( ! class_exists( 'Chat' ) ) {
 					// Just as a precaution. After processing we may end up with double breaks. So we convert to single. 
 					$chat_message = str_replace( "<br /><br />", '<br />', $chat_message );
 
-
 					$this->send_message( $chat_id, $name, $avatar, $chat_message, $moderator );
 					break;
 			}
@@ -2424,10 +2430,12 @@ if ( ! class_exists( 'Chat' ) ) {
 						(blog_id, chat_id, timestamp, name, avatar, message, archived, moderator)
 						VALUES ('$blog_id', '$chat_id', '$time_stamp', '$name', '$avatar', '$message', 'no', '$moderator_str');");
 			*/
-
-			return $wpdb->query( $wpdb->prepare( "INSERT INTO " . Chat::tablename( 'message' ) . "
-						(blog_id, chat_id, timestamp, name, avatar, message, archived, moderator)
-						VALUES (%d, %d, %s, %s, %s, %s, %s, %s);", $blog_id, $chat_id, $time_stamp, $name, $avatar, $message, 'no', $moderator_str ) );
+			$table = Chat::tablename( 'message' );
+			$sql =  $wpdb->prepare(
+				"INSERT INTO {$table} (blog_id, chat_id, timestamp, name, avatar, message, archived, moderator) VALUES (%d, %d, %s, %s, %s, %s, %s, %s)",
+				$blog_id, $chat_id, $time_stamp, $name, $avatar, $message, 'no', $moderator_str
+			);
+			return $wpdb->query( $sql );
 		}
 
 		/**

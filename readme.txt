@@ -4,7 +4,7 @@ Author: WPMUDEV
 Tags: Chat Tool, Chat Widget, Customer Support, Free Live Chat, Group Chat, Live Chat, Online Live Chat, Online Support, Plugin Chat, Private Message, Web Chat, BuddyPress chat
 Requires at least: 3.5.0
 Tested up to: 4.0
-Stable tag: 1.0.8.2
+Stable tag: 1.0.8.3
 
 Add chat to your blog. Chat with your readers and let them chat with each other.
 
@@ -43,7 +43,6 @@ Our full version includes many more features:
 * **Select which roles are moderators**
 * **Easily change chat colors**
 * **Disable avatars**
-* **Enable emoticons**
 * **Change chat update interval**
 * **Archive every chat** - You'll always have a record with timestamps on hand to refer back to when needed.
 * **Chat polling** - Change the frequency to check for new messages, handy for shared hosting environments.
@@ -59,6 +58,8 @@ Our full version includes many more features:
 Up the version to work with update plugin.
 
 == ChangeLog ==
+= 1.0.8.3 =
+* Fixed emoticons settings
 
 = 1.0.8.2 =
 * Fixed http links being broken in chat
