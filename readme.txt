@@ -1,6 +1,6 @@
 === Chat ===
 Contributors: WPMUDEV, mohanjith, umeshsingla
-Author: WPMUDEV
+Author: WPMUDEV,WPMUDEV-Support1, WPMUDEV-Support2,WPMUDEV-Support4, WPMUDEV-Support6
 Tags: Chat Tool, Chat Widget, Customer Support, Free Live Chat, Group Chat, Live Chat, Online Live Chat, Online Support, Plugin Chat, Private Message, Web Chat, BuddyPress chat
 Requires at least: 3.5.0
 Tested up to: 4.0
