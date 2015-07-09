@@ -196,7 +196,7 @@ if ( ! class_exists( 'Chat' ) ) {
 			) );
 
 			//Update Table collation
-			add_action('admin_init', array( $this, 'update_table_collation') );
+			add_action( 'admin_init', array( $this, 'update_table_collation' ) );
 		}
 
 		/**
@@ -2293,7 +2293,7 @@ if ( ! class_exists( 'Chat' ) ) {
 					$moderator       = $this->is_moderator( $moderator_roles );
 
 					// $avatar = ($current_user && $current_user->user_email && $current_user->display_name == $_POST['name'])?$current_user->user_email:$avatar;
-					$chat_message      = $_POST['message'];
+					$chat_message = $_POST['message'];
 					if ( empty( $chat_message ) ) {
 						die();
 					}
@@ -2472,7 +2472,7 @@ if ( ! class_exists( 'Chat' ) ) {
 				$message = wp_encode_emoji( $message );
 			}
 
-			$sql   = $wpdb->prepare(
+			$sql = $wpdb->prepare(
 				"INSERT INTO {$table} (blog_id, chat_id, timestamp, name, avatar, message, archived, moderator) VALUES (%d, %d, %s, %s, %s, %s, %s, %s)",
 				$blog_id, $chat_id, $time_stamp, $name, $avatar, $message, 'no', $moderator_str
 			);
@@ -2602,8 +2602,10 @@ if ( ! class_exists( 'Chat' ) ) {
 				return;
 			}
 			$table = Chat::tablename( 'message' );
-			require_once( ABSPATH . '/wp-admin/includes/upgrade.php');
-			maybe_convert_table_to_utf8mb4( $table );
+			require_once( ABSPATH . '/wp-admin/includes/upgrade.php' );
+			if ( function_exists( 'maybe_convert_table_to_utf8mb4' ) ) {
+				maybe_convert_table_to_utf8mb4( $table );
+			}
 
 			update_option( self::MIGRATED_VERSION, $this->version );
 
