@@ -2276,9 +2276,6 @@ if ( ! class_exists( 'Chat' ) ) {
 
 							$prepend .= ' <span class="name" style="background: ' . $name_color . ';">' . stripslashes( $row->name ) . '</span>';
 
-							echo "<pre>";
-							print_r( $_POST );
-							echo "</pre>";exit;
 							$text[ $row->id ] = " <div id='row-" . strtotime( $row->timestamp ) . "' class='row'>{$prepend}<span class='message' style='color: " . sanitize_hex_color( $_POST['text_color'] ) . "'>" . convert_smilies( $message ) . "</span><div class='chat-clear'></div></div>";
 							$last_check       = $row->timestamp;
 						}
