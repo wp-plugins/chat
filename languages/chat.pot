@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Chat Lite package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Chat Lite 1.0.8.4\n"
+"Project-Id-Version: Chat Lite 1.0.8.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/chat\n"
-"POT-Creation-Date: 2015-07-09 11:44:24+00:00\n"
+"POT-Creation-Date: 2015-07-17 09:59:06+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,7 +16,7 @@ msgstr ""
 msgid "Chat Plugin Options"
 msgstr ""
 
-#: chat.php:421 chat.php:1955
+#: chat.php:421 chat.php:1956
 msgid "Chat"
 msgstr ""
 
@@ -108,7 +108,7 @@ msgstr ""
 msgid "Select which roles are moderators"
 msgstr ""
 
-#: chat.php:940 chat.php:1799
+#: chat.php:940 chat.php:1800
 msgid "Chat Settings"
 msgstr ""
 
@@ -153,14 +153,14 @@ msgstr ""
 #: chat.php:981 chat.php:994 chat.php:1009 chat.php:1022 chat.php:1035
 #: chat.php:1166 chat.php:1179 chat.php:1255 chat.php:1275 chat.php:1288
 #: chat.php:1303 chat.php:1316 chat.php:1329 chat.php:1471 chat.php:1484
-#: chat.php:1808
+#: chat.php:1809
 msgid "Enabled"
 msgstr ""
 
 #: chat.php:982 chat.php:995 chat.php:1010 chat.php:1023 chat.php:1036
 #: chat.php:1167 chat.php:1180 chat.php:1256 chat.php:1276 chat.php:1289
 #: chat.php:1304 chat.php:1317 chat.php:1330 chat.php:1472 chat.php:1485
-#: chat.php:1811
+#: chat.php:1812
 msgid "Disabled"
 msgstr ""
 
@@ -200,7 +200,7 @@ msgstr ""
 msgid "Date and time background color"
 msgstr ""
 
-#: chat.php:1086 chat.php:1392 chat.php:2102
+#: chat.php:1086 chat.php:1392 chat.php:2103
 msgid "Name"
 msgstr ""
 
@@ -369,51 +369,51 @@ msgstr ""
 msgid "Minimize"
 msgstr ""
 
-#: chat.php:1680 chat.php:1956
+#: chat.php:1680 chat.php:1957
 msgid "Maximize"
 msgstr ""
 
-#: chat.php:1803
+#: chat.php:1804
 msgid "Chat sounds"
 msgstr ""
 
-#: chat.php:1955
+#: chat.php:1956
 msgid "Click here to chat!"
 msgstr ""
 
-#: chat.php:2068
+#: chat.php:2069
 msgid "Message"
 msgstr ""
 
-#: chat.php:2087
+#: chat.php:2088
 msgid "\"Enter\" to send"
 msgstr ""
 
-#: chat.php:2087
+#: chat.php:2088
 msgid "Place code in between code tags"
 msgstr ""
 
-#: chat.php:2089
+#: chat.php:2090
 msgid "Logout"
 msgstr ""
 
-#: chat.php:2099
+#: chat.php:2100
 msgid "To get started just enter your email address and desired username"
 msgstr ""
 
-#: chat.php:2103
+#: chat.php:2104
 msgid "E-mail"
 msgstr ""
 
-#: chat.php:2104
+#: chat.php:2105
 msgid "Login"
 msgstr ""
 
-#: chat.php:2120
+#: chat.php:2121
 msgid "You must be logged in to participate in chats"
 msgstr ""
 
-#: chat.php:2133
+#: chat.php:2134
 msgid "Chat Logs"
 msgstr ""
 

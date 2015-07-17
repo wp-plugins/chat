@@ -5,7 +5,7 @@ Plugin URI: http://premium.wpmudev.org/project/wordpress-chat-plugin
 Description: Provides you with a fully featured chat area either in a post, page or bottom corner of your site - once activated configure <a href="options-general.php?page=chat">here</a> and drop into a post or page by clicking on the new chat icon in your post/page editor.
 Author: WPMUDev
 WDP ID: 223
-Version: 1.0.8.4
+Version: 1.0.8.5
 Stable tag: trunk
 Author URI: http://premium.wpmudev.org
 */
@@ -29,7 +29,7 @@ if ( ! class_exists( 'Chat' ) ) {
 		 *
 		 * @var        string $version Current version
 		 */
-		var $version = '1.0.8.4';
+		var $version = '1.0.8.5';
 		/**
 		 * Meta key to save migrated version
 		 *
@@ -1691,7 +1691,7 @@ if ( ! class_exists( 'Chat' ) ) {
 				$chat_localized['name']    = "";
 				$chat_localized['vip']     = false;
 				$chat_localized['sounds']  = "enabled";
-				$chat_localized['post_id'] = $post->ID;
+				$chat_localized['post_id'] = !empty( $post->ID ) ? $post->ID : '';
 			}
 
 			if ( $this->get_option( 'twitter_api_key' ) != '' ) {
@@ -1773,8 +1773,9 @@ if ( ! class_exists( 'Chat' ) ) {
 			} else {
 				$uid = $current_user->ID;
 			}
-			if ( ! empty( $_POST['chat_sounds'] ) ) {
-				update_usermeta( $uid, 'chat_sounds', $_POST['chat_sounds'] );
+			$chat_sounds = !empty( $_POST['chat_sounds'] ) ? sanitize_key( $_POST['chat_sounds'] ) : '';
+			if ( ! empty( $chat_sounds ) ) {
+				update_user_meta( $uid, 'chat_sounds', $chat_sounds );
 			}
 
 			return $location;
@@ -2205,7 +2206,7 @@ if ( ! class_exists( 'Chat' ) ) {
 			global $current_user;
 			get_currentuserinfo();
 
-			$function = $_POST['function'];
+			$function = sanitize_key( $_POST['function'] );
 
 			if ( empty( $function ) ) {
 				$function = $_GET['function'];
@@ -2213,9 +2214,11 @@ if ( ! class_exists( 'Chat' ) ) {
 
 			$log = array();
 
+			$chat_id  = sanitize_key( $_POST['cid'] );
+
 			switch ( $function ) {
 				case 'update':
-					$chat_id  = $_POST['cid'];
+
 					$since    = $_POST['since'];
 					$since_id = $_POST['since_id'];
 					$end      = isset( $_POST['end'] ) ? $_POST['end'] : 0;
@@ -2259,21 +2262,21 @@ if ( ! class_exists( 'Chat' ) ) {
 							}
 
 							if ( $_POST['date_show'] == 'enabled' ) {
-								$prepend .= ' <span class="date" style="background: ' . $_POST['date_color'] . ';">' . date_i18n( get_option( 'date_format' ), strtotime( $row->timestamp ) + get_option( 'gmt_offset' ) * 3600, false ) . '</span>';
+								$prepend .= ' <span class="date" style="background: ' . sanitize_hex_color( $_POST['date_color'] ) . ';">' . date_i18n( get_option( 'date_format' ), strtotime( $row->timestamp ) + get_option( 'gmt_offset' ) * 3600, false ) . '</span>';
 							}
 							if ( $_POST['time_show'] == 'enabled' ) {
-								$prepend .= ' <span class="time" style="background: ' . $_POST['date_color'] . ';">' . date_i18n( get_option( 'time_format' ), strtotime( $row->timestamp ) + get_option( 'gmt_offset' ) * 3600, false ) . '</span>';
+								$prepend .= ' <span class="time" style="background: ' . sanitize_hex_color( $_POST['date_color'] ) . ';">' . date_i18n( get_option( 'time_format' ), strtotime( $row->timestamp ) + get_option( 'gmt_offset' ) * 3600, false ) . '</span>';
 							}
 
 							if ( $row->moderator == 'yes' ) {
-								$name_color = $_POST['moderator_name_color'];
+								$name_color = sanitize_hex_color( $_POST['moderator_name_color'] );
 							} else {
-								$name_color = $_POST['name_color'];
+								$name_color = sanitize_hex_color($_POST['name_color']);
 							}
 
-							$prepend .= ' <span class="name" style="background: ' . $name_color . ';">' . stripslashes( $row->name ) . '</span>';
+							$prepend .= ' <span class="name" style="background: ' . $name_color . ';">' . stripslashes( html_entity_decode( $row->name ) ) . '</span>';
 
-							$text[ $row->id ] = " <div id='row-" . strtotime( $row->timestamp ) . "' class='row'>{$prepend}<span class='message' style='color: " . $_POST['text_color'] . "'>" . convert_smilies( $message ) . "</span><div class='chat-clear'></div></div>";
+							$text[ $row->id ] = " <div id='row-" . strtotime( $row->timestamp ) . "' class='row'>{$prepend}<span class='message' style='color: " . sanitize_hex_color( $_POST['text_color'] ) . "'>" . convert_smilies( $message ) . "</span><div class='chat-clear'></div></div>";
 							$last_check       = $row->timestamp;
 						}
 
@@ -2282,9 +2285,8 @@ if ( ! class_exists( 'Chat' ) ) {
 					}
 					break;
 				case 'send':
-					$chat_id = $_POST['cid'];
 
-					$name = base64_decode( $_POST['name'] );
+					$name = sanitize_text_field( base64_decode( $_POST['name'] ) );
 					$name = htmlentities( strip_tags( $name ) );
 
 					$avatar = ( isset( $_COOKIE[ 'chat_stateless_user_image_' . $this->auth_type_map[ $_POST['type'] ] ] ) && ! empty( $_COOKIE[ 'chat_stateless_user_image_' . $this->auth_type_map[ $_POST['type'] ] ] ) ) ? $_COOKIE[ 'chat_stateless_user_image_' . $this->auth_type_map[ $_POST['type'] ] ] : $current_user->user_email;
@@ -2328,15 +2330,7 @@ if ( ! class_exists( 'Chat' ) ) {
 					// First strip all the tags!
 					$allowed_protocols = array();
 					$allowed_html      = array();
-					/*
-					$allowed_html = array(	'a' => array('href' => array()),
-											'br' => array(),
-											'em' => array(),
-											'strong' => array(),
-											'strike' => array(),
-											'blockquote' => array()
-										);
-					*/
+
 					$chat_message = wp_kses( $chat_message, $allowed_html, $allowed_protocols );
 
 					// Now that we can filtered the text outside the [code][/code] we want to convert the code section HTML to entities since it 
@@ -2408,10 +2402,6 @@ if ( ! class_exists( 'Chat' ) ) {
 		 */
 		function get_messages( $chat_id, $since = 0, $end = 0, $archived = 'no', $since_id = false ) {
 			global $wpdb, $blog_id;
-
-			//$chat_id = $wpdb->escape($chat_id);
-			//$archived = $wpdb->escape($archived);
-			//$since_id = $wpdb->escape($since_id);
 
 			if ( empty( $end ) ) {
 				$end = time();
@@ -2612,6 +2602,17 @@ if ( ! class_exists( 'Chat' ) ) {
 		}
 	}
 }
+if( !function_exists('sanitize_hex_color')) {
+	function sanitize_hex_color( $color ) {
+		if ( '' === $color )
+			return '';
 
+		// 3 or 6 hex digits, or the empty string.
+		if ( preg_match('|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) )
+			return $color;
+
+		return null;
+	}
+}
 // Lets get things started
 $chat = new Chat();
