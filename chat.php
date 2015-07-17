@@ -1691,7 +1691,7 @@ if ( ! class_exists( 'Chat' ) ) {
 				$chat_localized['name']    = "";
 				$chat_localized['vip']     = false;
 				$chat_localized['sounds']  = "enabled";
-				$chat_localized['post_id'] = $post->ID;
+				$chat_localized['post_id'] = !empty( $post->ID ) ? $post->ID : '';
 			}
 
 			if ( $this->get_option( 'twitter_api_key' ) != '' ) {
@@ -2274,7 +2274,7 @@ if ( ! class_exists( 'Chat' ) ) {
 								$name_color = sanitize_hex_color($_POST['name_color']);
 							}
 
-							$prepend .= ' <span class="name" style="background: ' . $name_color . ';">' . stripslashes( $row->name ) . '</span>';
+							$prepend .= ' <span class="name" style="background: ' . $name_color . ';">' . stripslashes( html_entity_decode( $row->name ) ) . '</span>';
 
 							$text[ $row->id ] = " <div id='row-" . strtotime( $row->timestamp ) . "' class='row'>{$prepend}<span class='message' style='color: " . sanitize_hex_color( $_POST['text_color'] ) . "'>" . convert_smilies( $message ) . "</span><div class='chat-clear'></div></div>";
 							$last_check       = $row->timestamp;
