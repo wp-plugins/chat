@@ -60,6 +60,7 @@ Up the version to work with update plugin.
 == ChangeLog ==
 = 1.0.8.5 =
 * Security: Escape $_POST variables
+* Fixed: Decode Umlaut in user name
 
 == ChangeLog ==
 = 1.0.8.4 =
